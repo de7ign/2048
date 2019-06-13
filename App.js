@@ -17,6 +17,17 @@ export default class App extends Component<Props> {
   }
   render() {
     const { width } = Dimensions.get("window");
+    const v1 = (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row"
+        }}
+      />
+    );
+    const row = [0, 1, 2, 3]; //, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    const id = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    const newLocal = 4;
     return (
       <View style={styles.container}>
         <View
@@ -61,7 +72,7 @@ export default class App extends Component<Props> {
               marginEnd: 5
             }}
           >
-            <Text>Score</Text>
+            <Text style={styles.text}>Score</Text>
           </View>
           <View
             style={{
@@ -70,16 +81,34 @@ export default class App extends Component<Props> {
               borderRadius: 5,
               marginStart: 5
             }}
-          ><Text>Highest Score</Text></View>
+          >
+            <Text style={styles.text}>High Score</Text>
+          </View>
         </View>
         <View
           style={{
             backgroundColor: "gray",
             borderRadius: 5,
             width: width * 0.85,
-            height: width * 0.85
+            height: width * 0.85,
+            padding: 5
           }}
-        ><Text>Board</Text></View>
+        >
+          {row.map(key => {
+            return (
+              <View key={"row" + key} style={styles.row}>
+                {row.map(key_ => {
+                  key_ = key_ + 1;
+                  return (
+                    <View key={4 * key + key_} style={styles.box}>
+                      <Text style={styles.text}>Box {4 * key + key_}</Text>
+                    </View>
+                  );
+                })}
+              </View>
+            );
+          })}
+        </View>
       </View>
     );
   }
@@ -90,16 +119,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "lightblue"
+    backgroundColor: "skyblue"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
+  row: {
+    flex: 1,
+    flexDirection: "row"
   },
-  instructions: {
+  box: {
+    flex: 1,
+    margin: 5,
+    borderRadius: 5,
+    backgroundColor: "white"
+  },
+  text: {
     textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+    color: "black"
   }
 });
