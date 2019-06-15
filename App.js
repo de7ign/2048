@@ -7,16 +7,56 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, PanResponder } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+
+const { width } = Dimensions.get("window");
+
+const getDirectionAndColor = ({ dx, dy }) => {
+  const draggedDown = dy > 30;
+  const draggedUp = dy < -30;
+  const draggedLeft = dx < -30;
+  const draggedRight = dx > 30;
+  let dragDirection = "";
+
+  if (draggedDown || draggedUp) {
+    if (draggedDown) dragDirection += "dragged down ";
+    if (draggedUp) dragDirection += "dragged up ";
+  }
+
+  if (draggedLeft || draggedRight) {
+    if (draggedLeft) dragDirection += "dragged left ";
+    if (draggedRight) dragDirection += "dragged right ";
+  }
+
+  if (dragDirection) return dragDirection;
+};
 
 type Props = {};
 export default class App extends Component<Props> {
   handleRestartButtonPress() {
     alert("restart button clicked");
   }
+
+  state = {
+    touchFeed: "try to swipe me"
+  };
+
+  componentWillMount() {
+    this._panResponder = PanResponder.create({
+      onMoveShouldSetPanResponder: (evt, gestureState) => true,
+      onPanResponderMove: (evt, gestureState) => {
+        const drag = getDirectionAndColor(gestureState);
+        this.setState({
+          touchFeed: drag
+        });
+      },
+      onPanResponderTerminationRequest: (evt, gestureState) => true
+    });
+  }
   render() {
-    const { width } = Dimensions.get("window");
+    const { touchFeed } = this.state;
+
     const v1 = (
       <View
         style={{
@@ -25,11 +65,9 @@ export default class App extends Component<Props> {
         }}
       />
     );
-    const row = [0, 1, 2, 3]; //, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    const id = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    const newLocal = 4;
+    const row = [0, 1, 2, 3];
     return (
-      <View style={styles.container}>
+      <View style={styles.container} {...this._panResponder.panHandlers}>
         <View
           style={{
             width: width * 0.85,
@@ -109,6 +147,7 @@ export default class App extends Component<Props> {
             );
           })}
         </View>
+        <Text>{touchFeed}</Text>
       </View>
     );
   }
