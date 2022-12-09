@@ -1,0 +1,6 @@
+<div class="box-container">
+  <ng-container *ngFor="let row of [].constructor(gridConfig.rows); let r = index">
+    <div *ngFor="let column of [].constructor(gridConfig.columns); let c = index" class="grid-items">
+    </div>
+  </ng-container>
+</div>

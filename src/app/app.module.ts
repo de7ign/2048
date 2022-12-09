@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { GridContainerComponent } from './grid-container/grid-container.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GridContainerComponent
   ],
   imports: [
     BrowserModule
