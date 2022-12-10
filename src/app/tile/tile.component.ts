@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-grid-card',
+  selector: 'tile',
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.css']
 })
-export class GridCardComponent implements OnInit {
+export class TileComponent implements OnInit {
 
   constructor() { }
 

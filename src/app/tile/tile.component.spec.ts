@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridCardComponent } from './tile.component';
+import { TileComponent } from './tile.component';
 
 describe('GridCardComponent', () => {
-  let component: GridCardComponent;
-  let fixture: ComponentFixture<GridCardComponent>;
+  let component: TileComponent;
+  let fixture: ComponentFixture<TileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GridCardComponent ]
+      declarations: [ TileComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GridCardComponent);
+    fixture = TestBed.createComponent(TileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

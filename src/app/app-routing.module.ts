@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnimationVaultComponent } from './animation-vault/animation-vault.component';
-import { GridContainerComponent } from './board/board.component'
+import { BoardComponent } from './board/board.component'
 
 const routes: Routes = [
   { path: 'animation', component: AnimationVaultComponent },
-  { path: '', component: GridContainerComponent }
+  { path: '', component: BoardComponent }
 ];
 
 @NgModule({
