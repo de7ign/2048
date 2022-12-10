@@ -1,9 +1,10 @@
-<div class="box-container">
-  <ng-container *ngFor="let row of [].constructor(gridConfig.rows); let r = index">
-    <div *ngFor="let column of [].constructor(gridConfig.columns); let c = index" class="grid-items">
-      <ng-container *ngIf="c %2 ===0">
-        <app-grid-card></app-grid-card>
-      </ng-container>
-    </div>
-  </ng-container>
-</div>
+
+  <div class="box-container">
+    <ng-container *ngFor="let row of [].constructor(gridConfig.rows); let r = index">
+      <div *ngFor="let column of [].constructor(gridConfig.columns); let c = index" class="grid-items">
+        <!-- <ng-container *ngIf="c %2 ===0">
+          <app-grid-card></app-grid-card>
+        </ng-container> -->
+      </div>
+    </ng-container>
+  </div>
